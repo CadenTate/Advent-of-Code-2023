@@ -11,7 +11,7 @@ def checkInt(num) -> bool:
 
 
 # Open File
-with open("test.txt") as text:
+with open("inputDay1.txt") as text:
     # Iterate through every line
     for line in text:
         firstNum = -1
@@ -51,16 +51,18 @@ with open("test.txt") as text:
                 lastWord = num
 
 
-        if line.index(str(firstNum)) < firstindex:
+        if -1 < line.find(str(firstNum)) < firstindex:
             finalFirst = firstNum
         else:
             finalFirst = validNumbers.index(firstWord) + 1
 
 
-        if line.rindex(str(lastNum)) > lastindex:
+        if line.rfind(str(lastNum)) > lastindex:
             finalLast = lastNum
         else:
-            finalLast = lastWord
+            finalLast = validNumbers.index(lastWord) + 1
 
 
-        print(finalFirst,finalLast)
+        sum += finalFirst * 10 + finalLast
+
+print(sum)
