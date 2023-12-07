@@ -64,6 +64,3 @@ with open("test.txt") as text:
 
 
         print(finalFirst,finalLast)
-
-
-
