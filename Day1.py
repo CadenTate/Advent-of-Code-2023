@@ -2,30 +2,68 @@ sum = 0
 
 validNumbers = ("one", "two", "three", "four", "five", "six", "seven", "eight","nine")
 
+def checkInt(num) -> bool:
+    try:
+        int(num)
+        return True
+    except:
+        return False
+
+
 # Open File
 with open("test.txt") as text:
     # Iterate through every line
-    # for i in text:
-    #     # iterate through each character
-    #     for f in i:
-    #         try:
-    #             f = int(f)
-    #             sum += f * 10
-    #             print(f)
-    #             break
-    #         except:
-    #             continue 
-    #     for f in reversed(i):
-    #         try:
-    #             f = int(f)
-    #             sum += f
-    #             print(f)
-    #             break
-    #         except:
-    #             continue
-
     for line in text:
-        for char in range(len(line)):
-            if line[i]
+        firstNum = -1
+        lastNum = -1
+        # Find first number
+        for char in line:
+            if checkInt(char):
+                firstNum = int(char)
+                break
 
-# print(sum)
+
+        # Find second number
+        for char in reversed(line):
+            if checkInt(char):
+                lastNum = int(char)
+                break
+            else:
+                lastNum = -1
+
+
+        # Setup for finding string numbers
+        firstindex = len(line)
+        lastindex = -1
+        firstWord = ""
+        lastWord = ""
+
+
+        # Find string numbers
+        for num in validNumbers:
+            # First Number
+            if -1 < line.find(num) < firstindex:
+                firstindex = line.find(num)
+                firstWord = num
+            # Last Number
+            if line.rfind(num) > lastindex:
+                lastindex = line.rfind(num)
+                lastWord = num
+
+
+        if line.index(str(firstNum)) < firstindex:
+            finalFirst = firstNum
+        else:
+            finalFirst = validNumbers.index(firstWord) + 1
+
+
+        if line.rindex(str(lastNum)) > lastindex:
+            finalLast = lastNum
+        else:
+            finalLast = lastWord
+
+
+        print(finalFirst,finalLast)
+
+
+
