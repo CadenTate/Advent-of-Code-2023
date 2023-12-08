@@ -11,10 +11,9 @@ rMax = 12
 gMax = 13
 bMax = 14
 
-with open("test.txt") as file:
+with open("text.txt") as file:
     for game in file:
-        ID = int(game[5])
-        game = game[8:]
+        ID = int(game.split(":")[0].split()[1])
         game = game.split(";")
         addID = True
 
