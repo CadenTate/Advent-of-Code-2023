@@ -11,7 +11,7 @@ rMax = 12
 gMax = 13
 bMax = 14
 
-with open("text.txt") as file:
+with open(r"C:\Users\Caden\Desktop\Code\Advent-of-Code-2023\Day 2\inputDay2.txt") as file:
     for game in file:
         ID = int(game.split(":")[0].split()[1])
         game = game.split(";")
@@ -26,11 +26,11 @@ with open("text.txt") as file:
                 cube = cube.strip().split(" ")
                 match cube[1]:
                     case "red":
-                        r += int(cube[0])
+                        r = int(cube[0])
                     case "green":
-                        g += int(cube[0])
+                        g = int(cube[0])
                     case "blue":
-                        b += int(cube[0])
+                        b = int(cube[0])
             if r > rMax or b > bMax or g > gMax:
                 addID = False
                 break
