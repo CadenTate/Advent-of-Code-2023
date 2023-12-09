@@ -1,5 +1,3 @@
-game = {}
-
 # Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
 # Game = Whole Line
 # Toss = One Section (divided by semicolon)
@@ -13,8 +11,9 @@ bMax = 14
 
 with open(r"C:\Users\Caden\Desktop\Code\Advent-of-Code-2023\Day 2\inputDay2.txt") as file:
     for game in file:
-        ID = int(game.split(":")[0].split()[1])
-        game = game.split(";")
+        game = game.split(":")
+        ID = int(game.pop(0).split()[1])
+        game = game[0].split(";")
         addID = True
 
         for toss in game:
@@ -24,13 +23,14 @@ with open(r"C:\Users\Caden\Desktop\Code\Advent-of-Code-2023\Day 2\inputDay2.txt"
             toss = toss.split(",")
             for cube in toss:
                 cube = cube.strip().split(" ")
+                cubeNum = int(cube[0])
                 match cube[1]:
                     case "red":
-                        r = int(cube[0])
+                        r = cubeNum
                     case "green":
-                        g = int(cube[0])
+                        g = cubeNum
                     case "blue":
-                        b = int(cube[0])
+                        b = cubeNum
             if r > rMax or b > bMax or g > gMax:
                 addID = False
                 break
