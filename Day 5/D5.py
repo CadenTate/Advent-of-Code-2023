@@ -14,7 +14,7 @@ seeds = [int(seed) for seed in seeds]
 del text[0]
 
 # Initialize Keys
-keys = {"s2s":{},"s2f":{},"f2w":{},"w2l":{},"l2t":{},"t2h":{},"h2l":{}}
+keys = {"s2s":[],"s2f":[],"f2w":[],"w2l":[],"l2t":[],"t2h":[],"h2l":[]}
 keysList = list(keys)
 
 saveLocation = 0
@@ -22,27 +22,23 @@ saveLocation = 0
 for line in text:
     if line == "":
         saveLocation += 1
-
+    
     line = line.split()
-
-    if len(line) == 3 or line == "":
+    if len(line) == 3:
         line = [int(num) for num in line]
-        destination = [line[0] + i for i in range(line[2])]
-        source = [line[1] + i for i in range(line[2])]
+        keys[keysList[saveLocation]].append(line)
 
-        for i in range(len(source)):
-            keys[keysList[saveLocation]][source[i]] = destination[i]
-print("Keys Processed")
-
-# Seed Convertion Logic
+# Proccessing Logic
 min = -1
 
 for seed in seeds:
     value = seed
     for key in keysList:
-        try:
-            value = keys[key][value]
-        except KeyError as e:
-            continue
-    if value < min or min == -1: min = value
+        maps = keys[key]
+        for map in maps:
+            if map[1] <= value < map[1] + map[2]:
+                value = map[0] + (value - map[1])
+                break
+    if value < min or min == -1: min = value      
+
 print(min)
