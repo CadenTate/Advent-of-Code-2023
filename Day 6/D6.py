@@ -12,10 +12,10 @@ distance = file[1].split()[1:]
 winAmount = 1
 
 for time, distance in zip(times, distance):
-    n = int(time) + 1
+    n = int(time)
     distance = int(distance)
 
-    minIndex = math.floor(quadratic(1,-(n-1),distance))
+    minIndex = math.floor(quadratic(1,-n,distance))
 
     badTimes = 2 * (minIndex + 1)
     answer = n - badTimes
