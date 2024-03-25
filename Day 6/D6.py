@@ -1,7 +1,7 @@
 import math
 
 def quadratic(a,b,c):
-    return (-b - math.sqrt(b*b-4*a*c)) / 2 * a
+    return ((-b - math.sqrt(b*b-4*a*c)) / 2 * a,(-b + math.sqrt(b*b-4*a*c)) / 2 * a)
 
 with open(r"C:\Users\ctate0455\Desktop\Advent-of-Code-2023\Day 6\input.txt") as file:
     file = file.readlines()
@@ -15,12 +15,10 @@ for time, distance in zip(times, distance):
     n = int(time)
     distance = int(distance)
 
-    minIndex = math.floor(quadratic(1,-n,distance))
+    answer = quadratic(1,-n,distance)
+    answer = answer[1] - answer[0]
 
-    badTimes = 2 * (minIndex + 1)
-    answer = n - badTimes
-
-    print(f"Debug:\nN = {n}\nDistance = {distance}\nMin Index = {minIndex}\nBad Times = {badTimes}\nAnswer = {answer}\n")
-    winAmount *= answer
+    print(f"Debug:\nN = {n}\nDistance = {distance}\nAnswer = {answer}\n")
+    winAmount *= math.floor(answer)
 
 print(winAmount)
