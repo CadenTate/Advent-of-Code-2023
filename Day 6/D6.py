@@ -1,23 +1,24 @@
 import math
 
+def quadratic(a:int,b:int,c:int) -> float:
+    return (-b - math.sqrt(b * b - 4*a*c)) / 2 * a
+
 with open(r"C:\Users\Caden\Desktop\Code\Advent-of-Code-2023\Day 6\input.txt") as file:
     file = file.readlines()
 
 times = file[0].split()[1:]
-distance = file[1].split()[1:]
+distances = file[1].split()[1:]
 
 winAmount = 1
 
-for i in range(len(times)):
-    time = int(times[i])
-    total = 0
-    for holdTime in range(math.ceil(time/2)):
-        moveTime = time - holdTime
-        distanceMoved = moveTime * holdTime
-        if distanceMoved > int(distance[i]):
-            total += 1
-    total *= 2
-    if time % 2 == 0: total += 1
-    winAmount *= total
+for time, distance in zip(times, distances):
+    time = int(time)
+    distance = int(distance)
+
+    if time % 2 == 1: time += 1
+
+    print(time, math.floor(quadratic(1,-time,distance)))
+
+    winAmount *= math.ceil(time / 2) - quadratic(1,-time,distance) * 2
 
 print(winAmount)
