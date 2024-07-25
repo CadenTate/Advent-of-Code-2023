@@ -1,4 +1,4 @@
-path = r"C:\Users\ctate0455\Desktop\Advent-of-Code-2023\Day 7\input.txt"
+path = r"C:\Users\Caden\Desktop\Code\Advent-of-Code-2023\Day 7\input.txt"
 
 with open(path) as file:
     file = file.readlines()
